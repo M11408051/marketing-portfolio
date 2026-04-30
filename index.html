@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>侯佩岑 — 數位行銷 × 內容策略</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#faf7f2;
+  --cream-2:#f2ede4;
+  --cream-3:#e8e1d5;
+  --ink:#1c1814;
+  --ink-70:rgba(28,24,20,0.7);
+  --ink-40:rgba(28,24,20,0.4);
+  --ink-12:rgba(28,24,20,0.12);
+  --ink-06:rgba(28,24,20,0.06);
+  --blue:#0078D4;
+  --blue-light:#e8f3fc;
+  --green:#2a6049;
+  --terra:#b85c32;
+  --warm:#a07428;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',sans-serif;
+  --display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.7}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 6vw;height:58px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.4s,border 0.4s;
+}
+nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--ink-12)}
+.nav-logo{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:0.1em;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:12px;color:var(--ink-70);text-decoration:none;font-weight:400;letter-spacing:0.04em;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink)!important;color:var(--cream)!important;padding:6px 14px;border-radius:6px;font-weight:500!important}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:80px 6vw 60px;
+  gap:48px;
+  position:relative;overflow:hidden;
+}
+.hero-video-wrap{display:none}
+.hero-overlay{display:none}
+.blob{position:absolute;border-radius:50%;filter:blur(72px);opacity:0.55;pointer-events:none;z-index:0}
+.b1{width:520px;height:520px;background:#d4e8f5;top:-140px;left:-100px;animation:drift1 9s ease-in-out infinite}
+.b2{width:440px;height:440px;background:#f5dde8;top:60px;right:-120px;animation:drift2 11s ease-in-out infinite}
+.b3{width:380px;height:380px;background:#e8f0d4;bottom:-100px;left:200px;animation:drift3 10s ease-in-out infinite}
+.b4{width:300px;height:300px;background:#f5e8d4;top:240px;left:40px;animation:drift4 12s ease-in-out infinite}
+.b5{width:260px;height:260px;background:#e0eaf5;bottom:30px;right:80px;animation:drift5 8s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,20px) scale(1.06)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-26px,16px) scale(1.08)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-28px) scale(1.04)}}
+@keyframes drift4{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(34px,24px) scale(1.07)}}
+@keyframes drift5{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-16px) scale(1.05)}}
+
+.hero-left{position:relative;z-index:2}
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
+
+/* 照片容器 */
+.photo-frame{
+  position:relative;
+  width:340px;height:400px;
+  flex-shrink:0;
+}
+.photo-bg-shape{
+  position:absolute;
+  top:20px;right:-12px;
+  width:280px;height:340px;
+  background:var(--cream-2);
+  border-radius:60% 40% 50% 50% / 50% 50% 40% 60%;
+  border:0.5px solid var(--ink-12);
+}
+.photo-img{
+  position:absolute;
+  bottom:0;left:0;
+  width:260px;height:340px;
+  object-fit:cover;object-position:top;
+  border-radius:12px;
+  filter:grayscale(8%);
+  border:0.5px solid var(--ink-12);
+}
+.photo-badge{
+  position:absolute;
+  top:8px;left:180px;
+  background:#fff;
+  border:0.5px solid var(--ink-12);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:11px;font-weight:500;
+  color:var(--ink);
+  white-space:nowrap;
+  box-shadow:0 2px 12px rgba(28,24,20,0.06);
+}
+.photo-badge span{display:block;font-size:18px;font-weight:800;font-family:var(--display);color:var(--blue);line-height:1.1}
+.photo-badge2{
+  position:absolute;
+  bottom:20px;right:-20px;
+  background:#fff;
+  border:0.5px solid var(--ink-12);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:11px;font-weight:500;
+  color:var(--ink);
+  box-shadow:0 2px 12px rgba(28,24,20,0.06);
+}
+.photo-badge2 span{display:block;font-size:18px;font-weight:800;font-family:var(--display);color:var(--green);line-height:1.1}
+
+.hero-eyebrow{
+  font-size:11px;letter-spacing:0.14em;color:var(--blue);
+  font-family:var(--display);font-weight:600;
+  text-transform:uppercase;margin-bottom:20px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.6s ease forwards 0.2s;
+}
+.hero-name{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(36px,4vw,52px);
+  line-height:1;letter-spacing:-0.03em;
+  color:var(--ink);margin-bottom:6px;
+  white-space:nowrap;
+  opacity:0;transform:translateY(16px);animation:fadeUp 0.7s ease forwards 0.35s;
+}
+.hero-name-en{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(14px,1.8vw,18px);
+  color:var(--ink-40);letter-spacing:0.08em;
+  margin-bottom:24px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.6s ease forwards 0.5s;
+}
+.hero-desc{
+  font-size:14px;font-weight:300;color:var(--ink-70);
+  line-height:1.9;max-width:400px;margin-bottom:32px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.6s ease forwards 0.65s;
+}
+.hero-tags{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.6s ease forwards 0.8s;
+}
+.htag{
+  font-size:11px;font-weight:500;letter-spacing:0.05em;
+  padding:5px 13px;border-radius:20px;
+  border:0.5px solid var(--ink-12);color:var(--ink-70);
+  background:#fff;
+}
+.htag.hl{border-color:var(--blue);color:var(--blue);background:var(--blue-light)}
+.hero-btns{
+  display:flex;gap:10px;
+  opacity:0;transform:translateY(12px);animation:fadeUp 0.6s ease forwards 0.95s;
+}
+.btn-dark{background:var(--ink);color:var(--cream);border:none;border-radius:8px;padding:12px 24px;font-size:13px;font-weight:500;font-family:var(--sans);cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;letter-spacing:0.02em}
+.btn-dark:hover{background:#333;transform:translateY(-1px)}
+.btn-line{background:#fff;color:var(--ink-70);border:0.5px solid var(--ink-12);border-radius:8px;padding:12px 24px;font-size:13px;font-weight:300;font-family:var(--sans);cursor:pointer;text-decoration:none;display:inline-block;transition:color 0.2s,border-color 0.2s,transform 0.15s}
+.btn-line:hover{color:var(--ink);border-color:rgba(28,24,20,0.3);transform:translateY(-1px)}
+
+/* ── ABOUT 帶數字 ── */
+#about{
+  background:var(--cream-2);
+  padding:80px 6vw;
+  border-top:0.5px solid var(--ink-12);
+}
+.about-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:0.5px solid var(--ink-12);border-radius:16px;overflow:hidden;background:#fff}
+.about-stat{padding:28px 24px;border-right:0.5px solid var(--ink-12);text-align:center}
+.about-stat:last-child{border-right:none}
+.about-stat-num{font-family:var(--display);font-size:36px;font-weight:800;line-height:1;margin-bottom:4px}
+.about-stat-num.blue{color:var(--blue)}
+.about-stat-num.green{color:var(--green)}
+.about-stat-num.terra{color:var(--terra)}
+.about-stat-num.warm{color:var(--warm)}
+.about-stat-lbl{font-size:11px;color:var(--ink-40);font-weight:300;line-height:1.4}
+.about-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:start}
+.about-text{font-size:14px;font-weight:300;color:var(--ink-70);line-height:1.9}
+.about-text strong{font-weight:500;color:var(--ink)}
+.skill-list{display:flex;flex-direction:column;gap:10px}
+.skill-item{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.skill-name-txt{font-size:12px;font-weight:500;color:var(--ink-70);width:80px;flex-shrink:0}
+.skill-bar-wrap{flex:1;height:4px;background:var(--cream-3);border-radius:2px;overflow:hidden}
+.skill-bar{height:100%;border-radius:2px;background:var(--ink);width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.skill-pct{font-size:11px;color:var(--ink-40);width:32px;text-align:right;flex-shrink:0}
+
+/* ── SECTION SHARED ── */
+.sec-eyebrow{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;text-transform:uppercase}
+.sec-title{font-family:var(--display);font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px}
+.sec-sub{font-size:14px;font-weight:300;color:var(--ink-70);line-height:1.8;max-width:520px;margin-bottom:48px}
+
+/* ── DATA ── */
+#data{padding:96px 6vw;background:var(--cream)}
+.data-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
+.col-head{font-family:var(--serif);font-size:12px;letter-spacing:0.08em;color:var(--ink-40);border-bottom:0.5px solid var(--ink-12);padding-bottom:10px;margin-bottom:18px;text-transform:uppercase}
+.kpi-stack{display:flex;flex-direction:column;gap:10px}
+.kpi-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:12px;padding:20px 22px;transition:border-color 0.2s}
+.kpi-card:hover{border-color:rgba(28,24,20,0.25)}
+.kpi-num{font-family:var(--display);font-size:36px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-bottom:4px}
+.kpi-num.blue{color:var(--blue)}.kpi-num.green{color:var(--green)}.kpi-num.terra{color:var(--terra)}.kpi-num.warm{color:var(--warm)}
+.kpi-lbl{font-size:12px;color:var(--ink-70);font-weight:300;line-height:1.4}
+.kpi-src{font-size:10px;color:var(--ink-40);margin-top:3px;font-style:italic}
+
+/* 影片卡片 */
+.vid-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.vid-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;overflow:hidden;transition:border-color 0.2s}
+.vid-card:hover{border-color:rgba(28,24,20,0.25)}
+.vid-wrap{position:relative;width:100%;padding-top:177.78%;background:var(--cream-2);overflow:hidden}
+.vid-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.vid-frame{position:absolute;inset:0;border:2px solid rgba(28,24,20,0.1);border-radius:12px;pointer-events:none;z-index:2}
+.vid-info{padding:16px 18px}
+.vid-tag{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:5px;font-family:var(--display)}
+.vid-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:7px;line-height:1.3}
+.vid-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.65;margin-bottom:12px}
+.vid-stats{display:flex;gap:14px}
+.vs-num{font-family:var(--display);font-size:18px;font-weight:800;display:block;color:var(--terra)}
+.vs-lbl{font-size:10px;color:var(--ink-40);display:block}
+
+/* UF card */
+.uf-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;padding:24px 28px;margin-bottom:14px}
+.uf-ctx{background:var(--cream-2);border-left:2px solid var(--warm);border-radius:0 8px 8px 0;padding:10px 14px;font-size:12px;color:var(--ink-70);line-height:1.7;margin-bottom:14px;font-weight:300}
+.uf-ctx strong{color:var(--ink);font-weight:500}
+.uf-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.uf-num-big{font-family:var(--display);font-size:32px;font-weight:800;line-height:1;margin-bottom:4px}
+
+/* Insta360 card */
+.brand-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;padding:20px 24px;display:flex;gap:24px;align-items:center}
+.brand-icon{width:56px;height:56px;border-radius:12px;background:var(--cream-2);border:0.5px solid var(--ink-12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--display);font-size:10px;font-weight:700;color:var(--ink-40);text-align:center;line-height:1.2}
+.brand-info{flex:1}
+
+/* ── DESIGN ── */
+#design{padding:96px 6vw;background:var(--cream-2);border-top:0.5px solid var(--ink-12)}
+.mag-frame{border-radius:16px;overflow:hidden;border:0.5px solid var(--ink-12);background:#fff;width:100%;aspect-ratio:1.6/1;position:relative;margin-bottom:28px}
+.mag-frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;display:block}
+.tool-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:32px}
+.tool-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--ink-12);color:var(--ink-70);font-weight:300;background:#fff}
+.skill-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sk-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:12px;padding:22px 18px;transition:border-color 0.2s}
+.sk-card:hover{border-color:rgba(28,24,20,0.25)}
+.sk-num{font-family:var(--display);font-size:32px;font-weight:800;color:var(--cream-3);line-height:1;margin-bottom:10px}
+.sk-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.sk-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.6}
+
+/* ── INTERNATIONAL ── */
+#international{padding:96px 6vw;background:var(--cream)}
+.intl-hero{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;align-items:center}
+.intl-vid{position:relative;border-radius:14px;overflow:hidden;border:0.5px solid var(--ink-12)}
+.intl-vid video{width:100%;max-height:340px;object-fit:cover;display:block}
+.intl-cap{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;background:linear-gradient(to top,rgba(250,247,242,0.95),transparent);font-size:12px;font-style:italic;color:var(--ink-70);font-weight:300;line-height:1.6;font-family:var(--serif)}
+.intl-right{}
+.cert-row{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.cert-badge{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;border:0.5px solid var(--ink-12);border-radius:10px}
+.cert-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cert-name{font-size:12px;font-weight:500;color:var(--ink)}
+.cert-score{font-size:11px;color:var(--ink-40);font-weight:300}
+
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--blue),transparent)}
+.tl-item{position:relative;margin-bottom:24px;opacity:0;transform:translateX(-8px);transition:opacity 0.5s,transform 0.5s}
+.tl-item.visible{opacity:1;transform:translateX(0)}
+.tl-dot{position:absolute;left:-28px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--blue);border:2px solid var(--cream)}
+.tl-year{font-size:10px;font-weight:600;color:var(--blue);letter-spacing:0.08em;font-family:var(--display);margin-bottom:2px}
+.tl-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.tl-desc{font-size:12px;font-weight:300;color:var(--ink-70);line-height:1.65}
+.trait-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.trait-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:12px;padding:18px 16px}
+.trait-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.trait-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.6}
+
+/* ── CONTACT ── */
+#contact{
+  background:var(--ink);
+  padding:100px 6vw;
+  text-align:center;
+}
+.contact-hl{font-family:var(--display);font-size:clamp(28px,3.5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:12px;color:var(--cream)}
+.contact-hl span{color:#4ea8ff}
+.contact-sub{font-size:14px;font-weight:300;color:rgba(250,247,242,0.6);max-width:440px;margin:0 auto 40px;line-height:1.8}
+.contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.c-badge{display:flex;align-items:center;gap:7px;padding:10px 20px;border:0.5px solid rgba(250,247,242,0.15);border-radius:8px;font-size:12px;color:rgba(250,247,242,0.6);text-decoration:none;transition:color 0.2s,border-color 0.2s;font-weight:300}
+.c-badge:hover{color:var(--cream);border-color:rgba(250,247,242,0.4)}
+.c-badge.primary{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:500}
+.c-badge.primary:hover{background:#005a9e;border-color:#005a9e}
+.footer-note{font-size:11px;color:rgba(250,247,242,0.2);font-weight:300;letter-spacing:0.04em}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{to{opacity:1}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-right{opacity:0;transform:translateX(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ── RWD ── */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;text-align:center}
+  .hero-right{display:none}
+  nav{padding:0 24px}
+  #about,#data,#design,#international{padding:72px 6vw}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .about-body{grid-template-columns:1fr}
+  .data-cols{grid-template-columns:1fr}
+  .vid-grid{grid-template-columns:1fr}
+  .intl-hero{grid-template-columns:1fr}
+  .skill-cards{grid-template-columns:1fr 1fr}
+  .trait-grid{grid-template-columns:1fr}
+  .uf-nums{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .about-grid{grid-template-columns:1fr 1fr}
+  .skill-cards{grid-template-columns:1fr}
+  .contact-links{flex-direction:column;align-items:center}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">侯佩岑</a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我</a></li>
+    <li><a href="#data">數據成果</a></li>
+    <li><a href="#design">視覺作品</a></li>
+    <li><a href="#international">國際經歷</a></li>
+    <li><a href="#contact" class="nav-cta">聯繫我</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+  <div class="blob b5"></div>
+
+  <div class="hero-left">
+    <p class="hero-eyebrow">數位行銷 × 內容策略師</p>
+    <h1 class="hero-name">侯佩岑</h1>
+    <p class="hero-name-en">HOU PEI-TSEN</p>
+    <p class="hero-desc">
+      台科大 MBA 在學中，擅長以數據驅動內容創作。<br>
+      個人頻道累積 <strong>45 萬+</strong> 自然觀看，<br>
+      品牌操盤達成 <strong>+117%</strong> 粉絲成長。<br>
+      將數字轉化為故事，讓故事轉化為實際成果。
+    </p>
+    <div class="hero-tags">
+      <span class="htag">台科大 MBA</span>
+      <span class="htag">JLPT N2</span>
+      <span class="htag">TOEIC 835</span>
+      <span class="htag">短影音策略</span>
+      <span class="htag hl">微軟 MOI 應徵者</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#data" class="btn-dark">看數據證明 →</a>
+      <a href="#design" class="btn-line">查看作品集</a>
+    </div>
+  </div>
+
+  <div class="hero-right reveal-right">
+    <div class="photo-frame">
+      <div class="photo-bg-shape"></div>
+      <!-- ★ 照片路徑 -->
+      <img class="photo-img" src="photo.png" alt="侯佩岑">
+      <div class="photo-badge">
+        <span data-target="450000" data-suffix="+" id="hero-stat1">45萬+</span>
+        自然觀看總累積
+      </div>
+      <div class="photo-badge2">
+        <span data-target="117" data-suffix="%" id="hero-stat2">117%</span>
+        粉絲成長率
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="sec-eyebrow reveal">01 — 關於我</div>
+  <div class="about-grid reveal">
+    <div class="about-stat">
+      <div class="about-stat-num blue" data-target="450000" data-suffix="+">0</div>
+      <div class="about-stat-lbl">個人帳號<br>自然觀看</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num green" data-target="117" data-suffix="%">0%</div>
+      <div class="about-stat-lbl">UF JAPAN<br>粉絲成長率</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num terra" data-target="2000" data-suffix="+">0</div>
+      <div class="about-stat-lbl">單支影片<br>最高收藏</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num warm" data-target="246" data-suffix="K">0K</div>
+      <div class="about-stat-lbl">品牌帳號<br>單月觸及</div>
+    </div>
+  </div>
+
+  <div class="about-body">
+    <div class="reveal">
+      <p class="about-text">
+        我是<strong>侯佩岑</strong>，目前就讀台科大企管碩士（MBA），
+        具備 <strong>JLPT N2</strong> 日語能力與 <strong>TOEIC 835</strong> 英語實力。<br><br>
+        我擅長洞察受眾痛點，具備「從 0 到 1」打造爆款短影音的實務經驗。
+        深知如何運用數據（收藏數、分享率、停留時間）持續優化內容，而非僅憑感覺創作。<br><br>
+        曾於<strong>日本法政大學</strong>交換一年，並在東京神樂坂名店以全日文從事服務工作，
+        磨練出在高壓環境下的跨文化執行力。<br><br>
+        我相信「數據能指導創意，而溝通能實現目標」，
+        期待將 MBA 的商業邏輯與數位行銷實績，投入微軟的產品行銷專案中。
+      </p>
+    </div>
+    <div class="reveal">
+      <p style="font-size:12px;font-weight:500;color:var(--ink-40);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px">工具熟悉度</p>
+      <div class="skill-list">
+        <div class="skill-item"><span class="skill-name-txt">Canva</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="95"></div></div><span class="skill-pct">95%</span></div>
+        <div class="skill-item"><span class="skill-name-txt">CapCut</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-item"><span class="skill-name-txt">Lightroom</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-item"><span class="skill-name-txt">Photoshop</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div><span class="skill-pct">80%</span></div>
+        <div class="skill-item"><span class="skill-name-txt">Figma</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div><span class="skill-pct">75%</span></div>
+        <div class="skill-item"><span class="skill-name-txt">Excel</span><div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div><span class="skill-pct">80%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DATA ══ -->
+<section id="data">
+  <p class="sec-eyebrow reveal">02 — 數據成果</p>
+  <h2 class="sec-title reveal">從內容到轉換，<br>數字說話。</h2>
+  <p class="sec-sub reveal">個人創作與品牌操盤並列——兩種角色，同樣的數據思維。</p>
+
+  <div class="data-cols reveal">
+    <div>
+      <div class="col-head">個人帳號創作實績</div>
+      <div class="kpi-stack">
+        <div class="kpi-card"><div class="kpi-num blue" data-target="450000" data-suffix="+">0</div><div class="kpi-lbl">跨平台自然觀看總累積</div><div class="kpi-src">個人 Instagram · 零廣告投放</div></div>
+        <div class="kpi-card"><div class="kpi-num terra" data-target="169736" data-suffix="">0</div><div class="kpi-lbl">單支最高觀看次數</div><div class="kpi-src">庫洛魔法使 × 藏壽司 聯名企劃</div></div>
+        <div class="kpi-card"><div class="kpi-num warm" data-target="2000" data-suffix="+">0</div><div class="kpi-lbl">單支影片最高收藏次數</div><div class="kpi-src">展現極強受眾黏著度</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="col-head">UF JAPAN 品牌操盤實績</div>
+      <div class="kpi-stack">
+        <div class="kpi-card"><div class="kpi-num green" data-target="117" data-suffix="%">0%</div><div class="kpi-lbl">兩個月粉絲成長率</div><div class="kpi-src">750 → 1,521 人 · 2025/5–2025/8</div></div>
+        <div class="kpi-card"><div class="kpi-num blue" data-target="246000" data-suffix="">0</div><div class="kpi-lbl">單月最高瀏覽量</div><div class="kpi-src">92% 觸及非粉絲受眾</div></div>
+        <div class="kpi-card"><div class="kpi-num warm" data-target="1300" data-suffix="+">0</div><div class="kpi-lbl">單月品牌主頁導流</div><div class="kpi-src">轉化為留學展實體活動關注</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vid-grid reveal">
+    <div class="vid-card">
+      <div class="vid-wrap">
+        <video autoplay muted loop playsinline><source src="cardcaptor.mp4" type="video/mp4"></video>
+        <div class="vid-frame"></div>
+      </div>
+      <div class="vid-info">
+        <div class="vid-tag">IP 聯名 · Insta360 校園大使</div>
+        <div class="vid-title">庫洛魔法使 × 藏壽司</div>
+        <div class="vid-desc">借勢 IP 聯名，災情報告切入，情境化導購創下個人帳號最高觀看紀錄。</div>
+        <div class="vid-stats">
+          <div><span class="vs-num">169,736</span><span class="vs-lbl">觀看</span></div>
+          <div><span class="vs-num">2千</span><span class="vs-lbl">轉傳</span></div>
+          <div><span class="vs-num">163</span><span class="vs-lbl">收藏</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-wrap">
+        <video autoplay muted loop playsinline><source src="hero-bg.mp4" type="video/mp4"></video>
+        <div class="vid-frame"></div>
+      </div>
+      <div class="vid-info">
+        <div class="vid-tag">在地活動 · 新莊燈會</div>
+        <div class="vid-title">燈會 POV 爆款企劃</div>
+        <div class="vid-desc">高吸睛鉤子 + POV 手法，精準捕捉演算法推播，零廣告費用爆發。</div>
+        <div class="vid-stats">
+          <div><span class="vs-num">121,834</span><span class="vs-lbl">觀看</span></div>
+          <div><span class="vs-num">92,304</span><span class="vs-lbl">觸及</span></div>
+          <div><span class="vs-num">8.5秒</span><span class="vs-lbl">平均觀看</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-wrap">
+        <video autoplay muted loop playsinline><source src="fujisan.mp4" type="video/mp4"></video>
+        <div class="vid-frame"></div>
+      </div>
+      <div class="vid-info">
+        <div class="vid-tag">日本系列 · 富士山三訪</div>
+        <div class="vid-title">富士山三次都沒看到</div>
+        <div class="vid-desc">反差敘事切入，平均觀看時間 13.9 秒遠高於平均，高分享率展現強烈共鳴感。</div>
+        <div class="vid-stats">
+          <div><span class="vs-num">126,913</span><span class="vs-lbl">觀看</span></div>
+          <div><span class="vs-num">13.9秒</span><span class="vs-lbl">平均觀看</span></div>
+          <div><span class="vs-num">3.27%</span><span class="vs-lbl">分享率</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-wrap">
+        <video autoplay muted loop playsinline><source src="cardcaptor.mp4" type="video/mp4"></video>
+        <!-- ★ 等你有拼圖咖啡廳原檔後，把上面 cardcaptor.mp4 換成 insta360.mp4 -->
+        <div class="vid-frame"></div>
+      </div>
+      <div class="vid-info">
+        <div class="vid-tag">品牌合作 · Insta360</div>
+        <div class="vid-title">拼圖咖啡廳軟性置入</div>
+        <div class="vid-desc">產品無縫融入生活探店，維持創作者風格下完成品牌推廣，平均觀看時間高於平均值。</div>
+        <div class="vid-stats">
+          <div><span class="vs-num">30,625</span><span class="vs-lbl">觀看</span></div>
+          <div><span class="vs-num">925</span><span class="vs-lbl">轉傳</span></div>
+          <div><span class="vs-num">351</span><span class="vs-lbl">收藏</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="uf-card reveal">
+    <div class="vid-tag">品牌操盤 · 2025/5–2025/8 · 日本留學展宣傳</div>
+    <div class="vid-title" style="font-size:17px;margin-bottom:10px">UF JAPAN × 日本留學展社群宣傳策略</div>
+    <div class="uf-ctx">
+      <strong>關於 UF JAPAN：</strong>聿富教育有限公司，專營日本留學代辦服務。每年舉辦大型留學展，邀請日本各大學校方來台，讓台灣學生免費與校方直接諮詢。我在實習期間負責留學展的全程社群影片企劃與執行。
+    </div>
+    <p style="font-size:13px;font-weight:300;color:var(--ink-70);line-height:1.8;max-width:600px;margin-bottom:0">
+      主導 IG 帳號轉型策略，透過 Reels 短影音搭配廣告投放，於兩個月內將粉絲從
+      <strong style="color:var(--ink)">750 人推升至 1,521 人</strong>，
+      單月創造 <strong style="color:var(--blue)">24.6 萬次瀏覽</strong>，
+      92% 觸及非粉絲受眾，並引導逾 1,300 次品牌主頁瀏覽。
+    </p>
+    <div class="uf-nums">
+      <div class="kpi-card"><div class="kpi-num green" style="font-size:28px">+117%</div><div class="kpi-lbl">兩個月粉絲成長率</div></div>
+      <div class="kpi-card"><div class="kpi-num blue" style="font-size:28px">24.6萬</div><div class="kpi-lbl">單月最高瀏覽量</div></div>
+      <div class="kpi-card"><div class="kpi-num warm" style="font-size:28px">92%</div><div class="kpi-lbl">非粉絲受眾觸及率</div></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <a href="https://www.instagram.com/reel/DLm2d1QTYU7/?igsh=N2MyaGdzcXNwNWNy" target="_blank" class="btn-dark" style="font-size:11px;padding:9px 18px">觀看留學展宣傳影片 →</a>
+      <a href="https://www.instagram.com/uf.japan/" target="_blank" class="btn-line" style="font-size:11px;padding:9px 18px">查看 UF JAPAN 帳號 →</a>
+    </div>
+  </div>
+
+  <div class="brand-card reveal">
+    <div class="brand-icon">Insta<br>360</div>
+    <div class="brand-info">
+      <div class="vid-tag">品牌合作 · 仍在進行中</div>
+      <div class="vid-title">Insta360 國際品牌校園大使</div>
+      <p style="font-size:12px;font-weight:300;color:var(--ink-70);line-height:1.7;margin-bottom:10px">將科技產品無縫融入生活探店，拼圖咖啡廳合作影片獲得 <strong style="color:var(--terra)">925 次轉傳</strong>（轉傳率遠高於平均），代表觀眾主動推薦給朋友，展現強烈病毒式傳播力。</p>
+      <div class="vid-stats">
+        <div><span class="vs-num">30,625</span><span class="vs-lbl">觀看</span></div>
+        <div><span class="vs-num">925</span><span class="vs-lbl">轉傳</span></div>
+        <div><span class="vs-num">351</span><span class="vs-lbl">收藏</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESIGN ══ -->
+<section id="design">
+  <p class="sec-eyebrow reveal">03 — 視覺企劃</p>
+  <h2 class="sec-title reveal">資訊是原料，<br>設計是工廠。</h2>
+  <p class="sec-sub reveal">從攝影、修圖到版面設計，全流程獨立完成。66 頁全日文雜誌，像翻一本真正的書。</p>
+
+    <div class="mag-frame reveal" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;min-height:280px;background:#fff;border-radius:16px;border:0.5px solid var(--ink-12);">
+    <div style="text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">📖</div>
+      <div style="font-family:var(--display);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px">台湾の学生街グルメガイド</div>
+      <div style="font-size:13px;font-weight:300;color:var(--ink-40);margin-bottom:24px">66 頁 · 全日文 · 雙頁並排翻書體驗</div>
+      <a href="magazine.html" target="_blank" class="btn-dark" style="font-size:14px;padding:14px 32px">翻閱完整雜誌 →</a>
+    </div>
+    <div style="font-size:11px;color:var(--ink-30);font-weight:300">支援鍵盤方向鍵翻頁 · 縮圖快速跳頁</div>
+  </div>
+
+  <div class="tool-pills reveal">
+    <span class="tool-pill">Canva</span><span class="tool-pill">Lightroom</span><span class="tool-pill">Photoshop</span>
+    <span class="tool-pill">Illustrator</span><span class="tool-pill">InDesign</span><span class="tool-pill">CapCut</span>
+    <span class="tool-pill">Figma</span><span class="tool-pill">Procreate</span><span class="tool-pill">Excel</span><span class="tool-pill">PowerPoint</span>
+  </div>
+
+  <div class="skill-cards reveal">
+    <div class="sk-card"><div class="sk-num">01</div><div class="sk-name">資訊視覺化</div><div class="sk-desc">將數據與複雜資訊轉化為直覺易懂的視覺層次，確保訊息傳遞精準度與受眾參與感。</div></div>
+    <div class="sk-card"><div class="sk-num">02</div><div class="sk-name">跨文化編輯企劃</div><div class="sk-desc">運用 JLPT N2 完成 40 頁全日文雜誌，涵蓋 5 所大學、20 家店舖，全程獨立完成。</div></div>
+    <div class="sk-card"><div class="sk-num">03</div><div class="sk-name">影音內容產製</div><div class="sk-desc">精通 CapCut 剪輯與 Nikon 攝影，累計 5 支萬級觀看，以高吸睛鉤子穩定維持高停留率。</div></div>
+  </div>
+</section>
+
+<!-- ══ INTERNATIONAL ══ -->
+<section id="international">
+  <p class="sec-eyebrow reveal">04 — 國際視野與執行力</p>
+  <h2 class="sec-title reveal">語言是工具，<br>適應力才是核心。</h2>
+  <p class="sec-sub reveal">法政大學交換一年是沉浸式的市場研究。在日本高壓職場的真實 deadline 下鍛鍊出的跨文化執行力，是我最核心的競爭優勢。</p>
+
+  <div class="intl-hero reveal">
+    <div class="intl-vid">
+      <video autoplay muted loop playsinline>
+        <source src="fujisan.mp4" type="video/mp4">
+      </video>
+      <div class="intl-cap">「去了富士山三次，一次都沒看到。最後請 AI 補圖——這或許是我對創意問題解決能力最誠實的示範。」</div>
+    </div>
+    <div class="intl-right">
+      <div class="cert-row">
+        <div class="cert-badge"><div class="cert-dot" style="background:var(--blue)"></div><div><div class="cert-name">多益 TOEIC</div><div class="cert-score">835 分</div></div></div>
+        <div class="cert-badge"><div class="cert-dot" style="background:var(--green)"></div><div><div class="cert-name">日本語能力試驗</div><div class="cert-score">JLPT N2</div></div></div>
+        <div class="cert-badge"><div class="cert-dot" style="background:var(--warm)"></div><div><div class="cert-name">教育部學海飛颺</div><div class="cert-score">國家級獎學金</div></div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2019–2023</div><div class="tl-title">元智大學 應用外語系</div><div class="tl-desc">奠定英日雙語基礎，培養跨文化溝通能力。</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022–2023</div><div class="tl-title">法政大學交換 × 神樂坂茶寮兼職</div><div class="tl-desc">學術與全日文職場雙軌並行，高強度時間管理與跨文化協作。</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023</div><div class="tl-title">66 頁全日文《台灣美食指南》</div><div class="tl-desc">涵蓋 5 所大學、20 家店舖，全流程獨立產出。</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024</div><div class="tl-title">元智大學 日文助教</div><div class="tl-desc">學術活動海報設計，資訊視覺化呈現。</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025–至今</div><div class="tl-title">台科大 MBA × UF JAPAN 實習 × Insta360 大使</div><div class="tl-desc">三線並行，持續累積商業邏輯與行銷實績。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trait-grid reveal">
+    <div class="trait-card"><div class="trait-title">認知靈活性</div><div class="trait-desc">同時在兩種語言、三個機構的學術與職場環境中高效切換，穩定產出高品質成果。</div></div>
+    <div class="trait-card"><div class="trait-title">高負載執行力</div><div class="trait-desc">在陌生組織架構中以第二語言溝通，面對緊湊時程仍能維持零失誤輸出。</div></div>
+    <div class="trait-card"><div class="trait-title">本地化策略思維</div><div class="trait-desc">深度理解日本消費者心理與平台行為規範，不只翻譯語言，更翻譯文化語境。</div></div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <h2 class="contact-hl reveal">讓我們一起，<br>打造<span>下一件大事</span>。</h2>
+  <p class="contact-sub reveal">透過數據驅動的內容賦能使用者。<br>準備好為微軟團隊創造實質的聲量成長。</p>
+  <div class="contact-links reveal">
+    <a href="resume.pdf" class="c-badge primary">下載履歷</a>
+    <a href="https://www.linkedin.com/in/hou-pei-tsen-3b74973aa/" target="_blank" class="c-badge">LinkedIn</a>
+    <a href="mailto:happy009019@gmail.com" class="c-badge">happy009019@gmail.com</a>
+    <a href="tel:0931676860" class="c-badge">0931-676-860</a>
+  </div>
+  <p class="footer-note reveal">侯佩岑 · 台科大企管碩士 · m11408051.github.io</p>
+</section>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+function counter(el,target,suffix,dur){
+  let s=0,step=target/(dur/16);
+  const tick=()=>{
+    s=Math.min(s+step,target);
+    const v=Math.round(s);
+    el.textContent=(target>=10000?v.toLocaleString():v)+suffix;
+    if(s<target)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('visible');
+    e.target.querySelectorAll('[data-target]').forEach(el=>{
+      counter(el,parseInt(el.dataset.target),el.dataset.suffix||'',1800);
+    });
+    e.target.querySelectorAll('.skill-bar[data-width]').forEach(bar=>{
+      setTimeout(()=>bar.style.width=bar.dataset.width+'%',100);
+    });
+    io.unobserve(e.target);
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.reveal,.reveal-right,.tl-item').forEach(el=>io.observe(el));
+
+setTimeout(()=>{
+  document.querySelectorAll('#hero [data-target]').forEach(el=>{
+    counter(el,parseInt(el.dataset.target),el.dataset.suffix||'',2000);
+  });
+  document.getElementById('hero-stat1').textContent='45萬+';
+  document.getElementById('hero-stat2').textContent='117%';
+},800);
+</script>
+</body>
+</html>
