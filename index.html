@@ -207,20 +207,40 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 .kpi-lbl{font-size:12px;color:var(--ink-70);font-weight:300;line-height:1.4}
 .kpi-src{font-size:10px;color:var(--ink-40);margin-top:3px;font-style:italic}
 
-/* 影片卡片 */
+/* 影片卡片 — 縮圖預覽模式 */
 .vid-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.vid-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;overflow:hidden;transition:border-color 0.2s}
+.vid-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;overflow:hidden;transition:border-color 0.2s;display:flex;flex-direction:row;align-items:stretch}
 .vid-card:hover{border-color:rgba(28,24,20,0.25)}
-.vid-wrap{position:relative;width:100%;padding-top:177.78%;background:var(--cream-2);overflow:hidden}
-.vid-wrap video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
-.vid-frame{position:absolute;inset:0;border:2px solid rgba(28,24,20,0.1);border-radius:12px;pointer-events:none;z-index:2}
-.vid-info{padding:16px 18px}
-.vid-tag{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:5px;font-family:var(--display)}
-.vid-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:7px;line-height:1.3}
-.vid-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.65;margin-bottom:12px}
-.vid-stats{display:flex;gap:14px}
-.vs-num{font-family:var(--display);font-size:18px;font-weight:800;display:block;color:var(--terra)}
+
+/* 縮圖區 */
+.vid-thumb{position:relative;width:110px;flex-shrink:0;background:var(--cream-2);cursor:pointer;overflow:hidden}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
+.vid-thumb:hover img{transform:scale(1.04)}
+.vid-thumb video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:none}
+.vid-thumb.playing img{display:none}
+.vid-thumb.playing video{display:block}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(28,24,20,0.28);transition:background 0.2s}
+.play-btn svg{width:32px;height:32px;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.3))}
+.vid-thumb.playing .play-btn{background:rgba(28,24,20,0.1)}
+.vid-thumb.playing .play-btn svg .play-icon{display:none}
+.vid-thumb.playing .play-btn svg .pause-icon{display:block}
+.pause-icon{display:none}
+
+.vid-frame{display:none}
+.vid-info{padding:14px 16px;flex:1;min-width:0}
+.vid-tag{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:4px;font-family:var(--display)}
+.vid-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px;line-height:1.3}
+.vid-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.6;margin-bottom:10px}
+.vid-stats{display:flex;gap:12px;flex-wrap:wrap}
+.vs-num{font-family:var(--display);font-size:16px;font-weight:800;display:block;color:var(--terra)}
 .vs-lbl{font-size:10px;color:var(--ink-40);display:block}
+
+/* 圖表區 */
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.chart-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;padding:20px 22px}
+.chart-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.chart-sub{font-size:10px;color:var(--ink-40);font-weight:300;margin-bottom:14px}
+.chart-wrap{position:relative;height:160px}
 
 /* UF card */
 .uf-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;padding:24px 28px;margin-bottom:14px}
@@ -457,14 +477,35 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
     </div>
   </div>
 
+  <!-- 圖表區 -->
+  <div class="charts-row reveal">
+    <div class="chart-card">
+      <div class="chart-title">個人影片觀看次數比較</div>
+      <div class="chart-sub">四支代表作 · 個人 Instagram · 零廣告</div>
+      <div class="chart-wrap"><canvas id="barChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">UF JAPAN 粉絲成長趨勢</div>
+      <div class="chart-sub">四個月實習期間 · 750 → 1,521 人</div>
+      <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+    </div>
+  </div>
+
   <div class="vid-grid reveal">
     <div class="vid-card">
-      <div class="vid-wrap">
-        <video autoplay muted loop playsinline><source src="cardcaptor.mp4" type="video/mp4"></video>
-        <div class="vid-frame"></div>
+      <div class="vid-thumb" id="thumb0" onclick="toggleVid(this,'cardcaptor.mp4')">
+        <img src="cardcaptor.mp4#t=0.1" onerror="this.src=''" alt="庫洛魔法使縮圖" style="background:var(--cream-2)">
+        <video muted playsinline loop><source src="cardcaptor.mp4" type="video/mp4"></video>
+        <div class="play-btn">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+            <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+            <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+          </svg>
+        </div>
       </div>
       <div class="vid-info">
-        <div class="vid-tag">IP 聯名 · Insta360 校園大使</div>
+        <div class="vid-tag">個人創作 · 借勢行銷</div>
         <div class="vid-title">庫洛魔法使 × 藏壽司</div>
         <div class="vid-desc">借勢 IP 聯名，災情報告切入，情境化導購創下個人帳號最高觀看紀錄。</div>
         <div class="vid-stats">
@@ -475,9 +516,16 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       </div>
     </div>
     <div class="vid-card">
-      <div class="vid-wrap">
-        <video autoplay muted loop playsinline><source src="hero-bg.mp4" type="video/mp4"></video>
-        <div class="vid-frame"></div>
+      <div class="vid-thumb" id="thumb1" onclick="toggleVid(this,'hero-bg.mp4')">
+        <img src="hero-bg.mp4#t=0.1" onerror="this.src=''" alt="燈會縮圖" style="background:var(--cream-2)">
+        <video muted playsinline loop><source src="hero-bg.mp4" type="video/mp4"></video>
+        <div class="play-btn">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+            <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+            <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+          </svg>
+        </div>
       </div>
       <div class="vid-info">
         <div class="vid-tag">在地活動 · 新莊燈會</div>
@@ -491,9 +539,16 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       </div>
     </div>
     <div class="vid-card">
-      <div class="vid-wrap">
-        <video autoplay muted loop playsinline><source src="fujisan.mp4" type="video/mp4"></video>
-        <div class="vid-frame"></div>
+      <div class="vid-thumb" id="thumb2" onclick="toggleVid(this,'fujisan.mp4')">
+        <img src="fujisan.mp4#t=0.1" onerror="this.src=''" alt="富士山縮圖" style="background:var(--cream-2)">
+        <video muted playsinline loop><source src="fujisan.mp4" type="video/mp4"></video>
+        <div class="play-btn">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+            <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+            <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+          </svg>
+        </div>
       </div>
       <div class="vid-info">
         <div class="vid-tag">日本系列 · 富士山三訪</div>
@@ -507,10 +562,16 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       </div>
     </div>
     <div class="vid-card">
-      <div class="vid-wrap">
-        <video autoplay muted loop playsinline><source src="cardcaptor.mp4" type="video/mp4"></video>
-        <!-- ★ 等你有拼圖咖啡廳原檔後，把上面 cardcaptor.mp4 換成 insta360.mp4 -->
-        <div class="vid-frame"></div>
+      <div class="vid-thumb" id="thumb3" onclick="toggleVid(this,'cardcaptor.mp4')">
+        <img src="cardcaptor.mp4#t=0.1" onerror="this.src=''" alt="拼圖咖啡廳縮圖" style="background:var(--cream-2)">
+        <video muted playsinline loop><source src="cardcaptor.mp4" type="video/mp4"></video>
+        <div class="play-btn">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+            <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+            <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+          </svg>
+        </div>
       </div>
       <div class="vid-info">
         <div class="vid-tag">品牌合作 · Insta360</div>
@@ -542,7 +603,45 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       <div class="kpi-card"><div class="kpi-num blue" style="font-size:28px">24.6萬</div><div class="kpi-lbl">單月最高瀏覽量</div></div>
       <div class="kpi-card"><div class="kpi-num warm" style="font-size:28px">92%</div><div class="kpi-lbl">非粉絲受眾觸及率</div></div>
     </div>
-    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+    <!-- UF JAPAN 影片縮圖 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;margin-bottom:14px">
+      <div style="border-radius:10px;overflow:hidden;border:0.5px solid var(--ink-12)">
+        <div class="vid-thumb" onclick="toggleVid(this,'ufjapan1.mp4')" style="width:100%;height:160px">
+          <img src="" alt="UF JAPAN 影片 1" style="width:100%;height:100%;object-fit:cover;background:var(--cream-2)">
+          <video muted playsinline loop style="width:100%;height:100%;object-fit:cover"><source src="ufjapan1.mp4" type="video/mp4"></video>
+          <div class="play-btn">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+              <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+              <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+            </svg>
+          </div>
+        </div>
+        <div style="padding:10px 12px;background:#fff">
+          <div style="font-size:10px;font-weight:600;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;font-family:var(--display);margin-bottom:2px">日本大學宣傳</div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink)">日本留學展校方介紹</div>
+        </div>
+      </div>
+      <div style="border-radius:10px;overflow:hidden;border:0.5px solid var(--ink-12)">
+        <div class="vid-thumb" onclick="toggleVid(this,'ufjapan2.mp4')" style="width:100%;height:160px">
+          <img src="" alt="UF JAPAN 影片 2" style="width:100%;height:100%;object-fit:cover;background:var(--cream-2)">
+          <video muted playsinline loop style="width:100%;height:100%;object-fit:cover"><source src="ufjapan2.mp4" type="video/mp4"></video>
+          <div class="play-btn">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+              <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+              <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+            </svg>
+          </div>
+        </div>
+        <div style="padding:10px 12px;background:#fff">
+          <div style="font-size:10px;font-weight:600;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;font-family:var(--display);margin-bottom:2px">留學展活動紀錄</div>
+          <div style="font-size:12px;font-weight:500;color:var(--ink)">留學展現場宣傳影片</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
       <a href="https://www.instagram.com/reel/DLm2d1QTYU7/?igsh=N2MyaGdzcXNwNWNy" target="_blank" class="btn-dark" style="font-size:11px;padding:9px 18px">觀看留學展宣傳影片 →</a>
       <a href="https://www.instagram.com/uf.japan/" target="_blank" class="btn-line" style="font-size:11px;padding:9px 18px">查看 UF JAPAN 帳號 →</a>
     </div>
@@ -596,7 +695,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 <section id="international">
   <p class="sec-eyebrow reveal">04 — 國際視野與執行力</p>
   <h2 class="sec-title reveal">語言是工具，<br>適應力才是核心。</h2>
-  <p class="sec-sub reveal">法政大學交換一年是沉浸式的市場研究。在日本高壓職場的真實 deadline 下鍛鍊出的跨文化執行力，是我最核心的競爭優勢。</p>
+  <p class="sec-sub reveal">法政大學交換一年，磨練出在全日文高壓環境下的跨文化溝通力與執行力——這是任何課堂都給不了的實戰優勢。</p>
 
   <div class="intl-hero reveal">
     <div class="intl-vid">
@@ -679,6 +778,68 @@ setTimeout(()=>{
   document.getElementById('hero-stat1').textContent='45萬+';
   document.getElementById('hero-stat2').textContent='117%';
 },800);
+
+// ── 影片縮圖點擊播放 ──
+function toggleVid(thumb, src) {
+  const vid = thumb.querySelector('video');
+  const isPlaying = thumb.classList.contains('playing');
+  // pause all others
+  document.querySelectorAll('.vid-thumb.playing').forEach(t => {
+    t.classList.remove('playing');
+    t.querySelector('video').pause();
+  });
+  if (!isPlaying) {
+    thumb.classList.add('playing');
+    vid.play();
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function initCharts(){
+  const textColor='rgba(28,24,20,0.4)';
+  const gridColor='rgba(28,24,20,0.06)';
+  new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{
+      labels:['庫洛魔法使\n× 藏壽司','富士山\n三訪企劃','新莊燈會\nPOV','Insta360\n拼圖咖啡廳'],
+      datasets:[{
+        data:[169736,126913,121834,30625],
+        backgroundColor:['#b85c32','#a07428','#b85c32','#a07428'],
+        borderRadius:6,borderSkipped:false
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y.toLocaleString()+' 次觀看'}}},
+      scales:{
+        x:{ticks:{color:textColor,font:{size:10},autoSkip:false},grid:{display:false},border:{display:false}},
+        y:{ticks:{color:textColor,font:{size:10},callback:v=>(v/10000).toFixed(0)+'萬'},grid:{color:gridColor},border:{display:false}}
+      }
+    }
+  });
+  new Chart(document.getElementById('growthChart'),{
+    type:'line',
+    data:{
+      labels:['5月\n實習開始','6月','7月','8月底\n實習結束'],
+      datasets:[{
+        data:[750,950,1200,1521],
+        borderColor:'#2a6049',
+        backgroundColor:'rgba(42,96,73,0.08)',
+        tension:0.4,fill:true,
+        pointBackgroundColor:'#2a6049',pointRadius:5
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y.toLocaleString()+' 人'}}},
+      scales:{
+        x:{ticks:{color:textColor,font:{size:10},autoSkip:false},grid:{display:false},border:{display:false}},
+        y:{ticks:{color:textColor,font:{size:10},callback:v=>v.toLocaleString()},grid:{color:gridColor},border:{display:false}}
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>
