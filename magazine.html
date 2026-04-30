@@ -179,7 +179,7 @@ SPREADS.push({type:'single-right', pages:[66]});  // back cover
 let current = 0;
 
 function pad(n){return n.toString().padStart(2,'0')}
-function imgPath(n){return `magazine/p${pad(n)}.jpg`}
+function imgPath(n){return `p${pad(n)}.jpg`}
 
 function render(){
   const spread = SPREADS[current];
