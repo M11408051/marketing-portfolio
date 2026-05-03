@@ -202,7 +202,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 /* ── DATA ── */
 #data{padding:96px 6vw;background:var(--cream)}
 .data-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
-.col-head{font-family:var(--serif);font-size:12px;letter-spacing:0.08em;color:var(--ink-40);border-bottom:0.5px solid var(--ink-12);padding-bottom:10px;margin-bottom:18px;text-transform:uppercase}
+.col-head{font-family:var(--display);font-size:15px;font-weight:800;letter-spacing:0.04em;color:var(--ink);border-bottom:2px solid var(--ink-12);padding-bottom:12px;margin-bottom:18px}
 .kpi-stack{display:flex;flex-direction:column;gap:10px}
 .kpi-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:12px;padding:20px 22px;transition:border-color 0.2s}
 .kpi-card:hover{border-color:rgba(28,24,20,0.25)}
@@ -212,12 +212,12 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 .kpi-src{font-size:10px;color:var(--ink-40);margin-top:3px;font-style:italic}
 
 /* 影片卡片 — 縮圖預覽模式 */
-.vid-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.vid-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;overflow:hidden;transition:border-color 0.2s;display:flex;flex-direction:row;align-items:stretch}
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+.vid-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:14px;overflow:hidden;transition:border-color 0.2s;display:flex;flex-direction:column}
 .vid-card:hover{border-color:rgba(28,24,20,0.25)}
 
-/* 縮圖區 — 固定 200×356px (9:16) */
-.vid-thumb{position:relative;width:200px;height:356px;flex-shrink:0;background:var(--cream-2);cursor:pointer;overflow:hidden}
+/* 縮圖區 — 9:16 直排全寬 */
+.vid-thumb{position:relative;width:100%;flex-shrink:0;background:var(--cream-2);cursor:pointer;overflow:hidden;aspect-ratio:9/16}
 .vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
 .vid-thumb:hover img{transform:scale(1.04)}
 .vid-thumb video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:none}
@@ -380,13 +380,13 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
     <h1 class="hero-name">侯佩岑</h1>
     <p class="hero-name-en">HOU PEI-TSEN</p>
     <p class="hero-desc">
-      <span data-zh="台科大企業管理所在學中，擅長以數據驅動內容創作。" data-en="MBA student at NTUST, specializing in data-driven content creation." data-ja="台湾科技大学企業管理大學院在学中。データ駆動型コンテンツ制作を得意とする。">台科大 MBA 在學中，擅長以數據驅動內容創作。</span><br>
+      <span data-zh="台科大 企業管理所在學，擅長以數據驅動內容創作。" data-en="Graduate student at NTUST (Business Administration), specializing in data-driven content creation." data-ja="台湾科技大学経営管理研究科在学中。データ駆動型コンテンツ制作を得意とする。">台科大 企業管理所在學，擅長以數據驅動內容創作。</span><br>
       <span data-zh="個人頻道累積 <strong>45 萬+</strong> 自然觀看，" data-en="Personal channel reached <strong>450K+</strong> organic views," data-ja="個人チャンネルで<strong>45万+</strong>のオーガニック視聴を達成。">個人頻道累積 <strong>45 萬+</strong> 自然觀看，</span><br>
       <span data-zh="品牌操盤達成 <strong>+117%</strong> 粉絲成長。" data-en="Brand management achieved <strong>+117%</strong> follower growth." data-ja="ブランド運用で<strong>+117%</strong>のフォロワー成長を実現。">品牌操盤達成 <strong>+117%</strong> 粉絲成長。</span><br>
       <span data-zh="將數字轉化為故事，讓故事轉化為實際成果。" data-en="Turning numbers into stories, stories into real results." data-ja="数字をストーリーに、ストーリーを実績に変える。">將數字轉化為故事，讓故事轉化為實際成果。</span>
     </p>
     <div class="hero-tags">
-      <span class="htag" data-zh="台科大 MBA" data-en="NTUST MBA" data-ja="台科大 MBA">台科大 MBA</span>
+      <span class="htag" data-zh="台科大 企業管理所" data-en="NTUST Business Admin" data-ja="台科大 経営管理">台科大 企業管理所</span>
       <span class="htag">JLPT N2</span>
       <span class="htag">TOEIC 835</span>
       <span class="htag" data-zh="短影音策略" data-en="Short Video Strategy" data-ja="ショート動画戦略">短影音策略</span>
@@ -405,11 +405,11 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       <img class="photo-img" src="photo.png" alt="侯佩岑">
       <div class="photo-badge">
         <span data-target="450000" data-suffix="+" id="hero-stat1">45萬+</span>
-        自然觀看總累積
+        <span data-zh="自然觀看總累積" data-en="Organic Views" data-ja="オーガニック視聴">自然觀看總累積</span>
       </div>
       <div class="photo-badge2">
         <span data-target="117" data-suffix="%" id="hero-stat2">117%</span>
-        粉絲成長率
+        <span data-zh="粉絲成長率" data-en="Follower Growth" data-ja="フォロワー成長率">粉絲成長率</span>
       </div>
     </div>
   </div>
@@ -440,14 +440,14 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
   <div class="about-body">
     <div class="reveal">
       <p class="about-text" data-zh="我是<strong>侯佩岑</strong>，目前就讀台科大企管碩士（MBA），具備 <strong>JLPT N2</strong> 日語能力與 <strong>TOEIC 835</strong> 英語實力。<br><br>我擅長洞察受眾痛點，具備「從 0 到 1」打造爆款短影音的實務經驗。深知如何運用數據（收藏數、分享率、停留時間）持續優化內容，而非僅憑感覺創作。<br><br>曾於<strong>日本法政大學</strong>交換一年，並在東京神樂坂名店以全日文從事服務工作，磨練出在高壓環境下的跨文化執行力。<br><br>我相信「數據能指導創意，而溝通能實現目標」，期待將 MBA 的商業邏輯與數位行銷實績，投入微軟的產品行銷專案中。" data-en="I'm <strong>Hou Pei-Tsen</strong>, an MBA student at NTUST with <strong>JLPT N2</strong> Japanese proficiency and <strong>TOEIC 835</strong> English skills.<br><br>I specialize in identifying audience pain points and building viral short-form videos from scratch. I leverage data metrics—saves, shares, watch time—to continuously optimize content rather than relying on intuition alone.<br><br>After a year of exchange at <strong>Hosei University</strong> in Japan, working in a prestigious Tokyo café entirely in Japanese, I developed cross-cultural execution skills under high-pressure environments.<br><br>I believe data guides creativity and communication delivers results. I'm eager to bring my MBA business acumen and digital marketing track record to Microsoft's product marketing." data-ja="私は<strong>侯佩岑（ホウ・ペイツェン）</strong>、台湾科技大学MBA在学中。<strong>JLPT N2</strong>の日本語力と<strong>TOEIC 835</strong>の英語力を持つ。<br><br>視聴者のニーズを的確に捉え、バズるショート動画を「ゼロから作り上げる」実務経験を持つ。保存数・シェア率・視聴維持率などのデータを活用して継続的にコンテンツを最適化する。<br><br><strong>法政大学</strong>への一年間の交換留学を経て、東京・神楽坂の名店で全日本語での接客を経験。高プレッシャーな環境での異文化対応力を磨いた。<br><br>「データが創造性を導き、コミュニケーションが目標を実現する」という信念のもと、MBAの知見とデジタルマーケティングの実績をマイクロソフトのプロダクトマーケティングに活かしたい。">
-        私は<strong>侯佩岑</strong>，目前就讀台科大企管碩士（MBA），
+        我是<strong>侯佩岑</strong>，目前就讀台科大企業管理所，
         具備 <strong>JLPT N2</strong> 日語能力與 <strong>TOEIC 835</strong> 英語實力。<br><br>
         我擅長洞察受眾痛點，具備「從 0 到 1」打造爆款短影音的實務經驗。
         深知如何運用數據（收藏數、分享率、停留時間）持續優化內容，而非僅憑感覺創作。<br><br>
         曾於<strong>日本法政大學</strong>交換一年，並在東京神樂坂名店以全日文從事服務工作，
         磨練出在高壓環境下的跨文化執行力。<br><br>
         我相信「數據能指導創意，而溝通能實現目標」，
-        期待將 MBA 的商業邏輯與數位行銷實績，投入微軟的產品行銷專案中。
+        期待將企管所的商業邏輯與數位行銷實績，持續創造更多實際成果。
       </p>
     </div>
     <div class="reveal">
@@ -472,7 +472,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 
   <div class="data-cols reveal">
     <div>
-      <div class="col-head" data-zh="個人帳號創作實績" data-en="Personal Account Performance" data-ja="個人アカウント実績">個人帳號創作實績</div>
+      <div class="col-head" style="border-left:3px solid var(--terra);padding-left:10px;border-bottom:none;color:var(--terra)" data-zh="個人帳號創作實績" data-en="Personal Account Performance" data-ja="個人アカウント実績">個人帳號創作實績</div>
       <div class="kpi-stack">
         <div class="kpi-card"><div class="kpi-num blue" data-target="450000" data-suffix="+">0</div><div class="kpi-lbl" data-zh="跨平台自然觀看總累積" data-en="Total Organic Views Across Platforms" data-ja="累計オーガニック視聴数">跨平台自然觀看總累積</div><div class="kpi-src" data-zh="個人 Instagram · 零廣告投放" data-en="Personal Instagram · Zero Paid Ads" data-ja="個人Instagram · 広告費ゼロ">個人 Instagram · 零廣告投放</div></div>
         <div class="kpi-card"><div class="kpi-num terra" data-target="169736" data-suffix="">0</div><div class="kpi-lbl" data-zh="單支最高觀看次數" data-en="Peak Single Video Views" data-ja="1本の最高視聴回数">單支最高觀看次數</div><div class="kpi-src" data-zh="庫洛魔法使 × 藏壽司 聯名企劃" data-en="Cardcaptor Sakura × Kura Sushi Collab" data-ja="カードキャプターさくら × くら寿司コラボ">庫洛魔法使 × 藏壽司 聯名企劃</div></div>
@@ -480,27 +480,20 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       </div>
     </div>
     <div>
-      <div class="col-head" data-zh="UF JAPAN 品牌操盤實績" data-en="UF JAPAN Brand Management" data-ja="UF JAPAN ブランド運用実績">UF JAPAN 品牌操盤實績</div>
+      <div class="col-head" style="border-left:3px solid #e8415a;padding-left:10px;border-bottom:none;color:#e8415a" data-zh="UF JAPAN 品牌操盤實績" data-en="UF JAPAN Brand Management" data-ja="UF JAPAN ブランド運用実績">UF JAPAN 品牌操盤實績</div>
       <div class="kpi-stack">
-        <div class="kpi-card"><div class="kpi-num green" data-target="117" data-suffix="%">0%</div><div class="kpi-lbl" data-zh="兩個月粉絲成長率" data-en="2-Month Follower Growth Rate" data-ja="2ヶ月間のフォロワー成長率">兩個月粉絲成長率</div><div class="kpi-src">750 → 1,521 · 2025/5–2025/8</div></div>
-        <div class="kpi-card"><div class="kpi-num blue" data-target="246000" data-suffix="">0</div><div class="kpi-lbl" data-zh="單月最高瀏覽量" data-en="Peak Monthly Impressions" data-ja="月間最高インプレッション数">單月最高瀏覽量</div><div class="kpi-src" data-zh="92% 觸及非粉絲受眾" data-en="92% Reached Non-Followers" data-ja="92%がフォロワー外へのリーチ">92% 觸及非粉絲受眾</div></div>
-        <div class="kpi-card"><div class="kpi-num warm" data-target="1300" data-suffix="+">0</div><div class="kpi-lbl" data-zh="單月品牌主頁導流" data-en="Monthly Profile Visits Driven" data-ja="月間プロフィール訪問誘導数">單月品牌主頁導流</div><div class="kpi-src" data-zh="轉化為留學展實體活動關注" data-en="Converted to Study Abroad Event Interest" data-ja="留学フェアへの実際の関心に転換">轉化為留學展實體活動關注</div></div>
+        <div class="kpi-card" style="background:#fff5f5;border-color:#f5c0c0;border-left:3px solid #e8415a"><div class="kpi-num green" data-target="117" data-suffix="%">0%</div><div class="kpi-lbl" data-zh="兩個月粉絲成長率" data-en="2-Month Follower Growth Rate" data-ja="2ヶ月間のフォロワー成長率">兩個月粉絲成長率</div><div class="kpi-src">750 → 1,521 · 2025/5–2025/8</div></div>
+        <div class="kpi-card" style="background:#fff5f5;border-color:#f5c0c0;border-left:3px solid #e8415a"><div class="kpi-num blue" data-target="246000" data-suffix="">0</div><div class="kpi-lbl" data-zh="單月最高瀏覽量" data-en="Peak Monthly Impressions" data-ja="月間最高インプレッション数">單月最高瀏覽量</div><div class="kpi-src" data-zh="92% 觸及非粉絲受眾" data-en="92% Reached Non-Followers" data-ja="92%がフォロワー外へのリーチ">92% 觸及非粉絲受眾</div></div>
+        <div class="kpi-card" style="background:#fff5f5;border-color:#f5c0c0;border-left:3px solid #e8415a"><div class="kpi-num warm" data-target="1300" data-suffix="+">0</div><div class="kpi-lbl" data-zh="單月品牌主頁導流" data-en="Monthly Profile Visits Driven" data-ja="月間プロフィール訪問誘導数">單月品牌主頁導流</div><div class="kpi-src" data-zh="轉化為留學展實體活動關注" data-en="Converted to Study Abroad Event Interest" data-ja="留学フェアへの実際の関心に転換">轉化為留學展實體活動關注</div></div>
       </div>
     </div>
   </div>
 
-  <!-- 圖表區 -->
-  <div class="charts-row reveal">
-    <div class="chart-card">
-      <div class="chart-title" data-zh="個人影片觀看次數比較" data-en="Personal Video Views Comparison" data-ja="個人動画視聴回数比較">個人影片觀看次數比較</div>
-      <div class="chart-sub" data-zh="四支代表作 · 個人 Instagram · 零廣告" data-en="4 Featured Videos · Personal Instagram · Zero Ads" data-ja="代表作4本 · 個人Instagram · 広告費ゼロ">四支代表作 · 個人 Instagram · 零廣告</div>
-      <div class="chart-wrap"><canvas id="barChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title" data-zh="UF JAPAN 粉絲成長趨勢" data-en="UF JAPAN Follower Growth" data-ja="UF JAPAN フォロワー成長推移">UF JAPAN 粉絲成長趨勢</div>
-      <div class="chart-sub" data-zh="四個月實習期間 · 750 → 1,521 人" data-en="4-Month Internship · 750 → 1,521 Followers" data-ja="4ヶ月のインターン期間 · 750 → 1,521人">四個月實習期間 · 750 → 1,521 人</div>
-      <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
-    </div>
+  <!-- 長條圖 — 三支個人影片 -->
+  <div class="chart-card reveal" style="margin-bottom:14px">
+    <div class="chart-title" data-zh="個人影片觀看次數比較" data-en="Personal Video Views Comparison" data-ja="個人動画視聴回数比較">個人影片觀看次數比較</div>
+    <div class="chart-sub" data-zh="三支代表作 · 個人 Instagram · 零廣告 · 600+ 粉絲基礎" data-en="3 Featured Videos · Personal Instagram · Zero Ads · 600+ Followers" data-ja="代表作3本 · 個人Instagram · 広告費ゼロ · 600+フォロワー">三支代表作 · 個人 Instagram · 零廣告 · 600+ 粉絲基礎</div>
+    <div class="chart-wrap"><canvas id="barChart"></canvas></div>
   </div>
 
   <div class="vid-grid reveal">
@@ -573,29 +566,6 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
         </div>
       </div>
     </div>
-    <div class="vid-card">
-      <div class="vid-thumb" id="thumb3" onclick="toggleVid(this,'insta360_cafe.mp4')">
-        <canvas class="thumb-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
-        <video playsinline loop><source src="insta360_cafe.mp4" type="video/mp4"></video>
-        <div class="play-btn">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
-            <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
-            <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
-          </svg>
-        </div>
-      </div>
-      <div class="vid-info">
-        <div class="vid-tag" data-zh="品牌合作 · Insta360" data-en="Brand Collab · Insta360" data-ja="ブランドコラボ · Insta360">品牌合作 · Insta360</div>
-        <div class="vid-title" data-zh="拼圖咖啡廳軟性置入" data-en="Puzzle Café Soft Product Integration" data-ja="パズルカフェ ソフトプロモーション">拼圖咖啡廳軟性置入</div>
-        <div class="vid-desc" data-zh="產品無縫融入生活探店，維持創作者風格下完成品牌推廣，平均觀看時間高於平均值。" data-en="Seamlessly integrated product into a lifestyle café visit, maintaining creator authenticity while promoting the brand. Above-average watch time." data-ja="ライフスタイル動画にプロダクトを自然に融合。クリエイターらしさを保ちながらブランドを訴求。平均視聴時間が平均を上回る。">產品無縫融入生活探店，維持創作者風格下完成品牌推廣，平均觀看時間高於平均值。</div>
-        <div class="vid-stats">
-          <div><span class="vs-num">30,625</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
-          <div><span class="vs-num">925</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
-          <div><span class="vs-num">351</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="uf-card reveal">
@@ -615,8 +585,14 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
       <div class="kpi-card"><div class="kpi-num blue" style="font-size:28px">24.6萬</div><div class="kpi-lbl" data-zh="單月最高瀏覽量" data-en="Peak Monthly Impressions" data-ja="月間最高インプレッション">單月最高瀏覽量</div></div>
       <div class="kpi-card"><div class="kpi-num warm" style="font-size:28px">92%</div><div class="kpi-lbl" data-zh="非粉絲受眾觸及率" data-en="Non-Follower Reach Rate" data-ja="非フォロワーリーチ率">非粉絲受眾觸及率</div></div>
     </div>
-    <!-- UF JAPAN 影片 — 與上方四支相同樣式 -->
-    <div class="vid-grid" style="margin-top:14px;margin-bottom:14px">
+    <!-- 折線圖 -->
+    <div class="chart-card" style="margin-top:14px">
+      <div class="chart-title" data-zh="粉絲成長趨勢" data-en="Follower Growth Trend" data-ja="フォロワー成長推移">粉絲成長趨勢</div>
+      <div class="chart-sub" data-zh="2025/07–08 密集發片期 · 750 → 1,521 人" data-en="Intensive Posting Period 2025/07–08 · 750 → 1,521 Followers" data-ja="集中投稿期間 2025/07–08 · 750 → 1,521人">2025/07–08 密集發片期 · 750 → 1,521 人</div>
+      <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
+    </div>
+    <!-- UF JAPAN 影片 -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px;margin-bottom:14px;max-width:700px;margin-left:auto;margin-right:auto">
       <div class="vid-card">
         <div class="vid-thumb" id="uf-thumb0" onclick="toggleVid(this,'ufjapan1.mp4')">
           <canvas class="thumb-canvas" width="110" height="196" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover"></canvas>
@@ -631,8 +607,8 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
         </div>
         <div class="vid-info">
           <div class="vid-tag" data-zh="品牌操盤 · UF JAPAN" data-en="Brand Management · UF JAPAN" data-ja="ブランド運用 · UF JAPAN">品牌操盤 · UF JAPAN</div>
-          <div class="vid-title" data-zh="日本留學展校方介紹" data-en="Japanese University Intro for Study Expo" data-ja="留学フェア向け日本大学紹介">日本留學展校方介紹</div>
-          <div class="vid-desc" data-zh="以日本大學視角切入，吸引台灣學生關注留學展報名資訊。" data-en="From the perspective of Japanese universities, attracting Taiwanese students to register for the Study Abroad Expo." data-ja="日本の大学目線で切り込み、台湾の学生に留学フェアへの関心を促す。">以日本大學視角切入，吸引台灣學生關注留學展報名資訊。</div>
+          <div class="vid-title" data-zh="互動選擇器 — 打造專屬留學路徑" data-en="Interactive Selector — Build Your Study Path" data-ja="インタラクティブ選択 — 留学ルートを設計">互動選擇器 — 打造專屬留學路徑</div>
+          <div class="vid-desc" data-zh="遊戲化選擇系統切入，以日圓低點為誘因，引導觀眾選擇學校類型、地區、時長，最終以扭蛋概念導流至留學展。" data-en="Gamified interactive format using JPY low rates as a hook. Viewers choose school type, region, and duration — culminating in a gacha concept directing them to the expo." data-ja="円安をフックにゲーム化された選択形式。学校タイプ・地域・期間を選ぶ流れで、ガチャ概念で留学フェアへ誘導。">遊戲化選擇系統切入，以日圓低點為誘因，引導觀眾選擇學校類型、地區、時長，最終以扭蛋概念導流至留學展。</div>
         </div>
       </div>
       <div class="vid-card">
@@ -649,8 +625,8 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
         </div>
         <div class="vid-info">
           <div class="vid-tag" data-zh="品牌操盤 · UF JAPAN" data-en="Brand Management · UF JAPAN" data-ja="ブランド運用 · UF JAPAN">品牌操盤 · UF JAPAN</div>
-          <div class="vid-title" data-zh="留學展現場宣傳影片" data-en="Study Abroad Expo On-Site Promo" data-ja="留学フェア会場プロモーション動画">留學展現場宣傳影片</div>
-          <div class="vid-desc" data-zh="活動現場紀錄，帶出留學展規模與氛圍，強化品牌信賴感。" data-en="On-site event documentation capturing the expo's scale and atmosphere to build brand credibility." data-ja="会場の規模と雰囲気を記録し、ブランドの信頼感を高める現場ドキュメント。">活動現場紀錄，帶出留學展規模與氛圍，強化品牌信賴感。</div>
+          <div class="vid-title" data-zh="留學幻滅真相 — 7大日本校園生存法則" data-en="Study Abroad Reality — 7 Truths of Campus Life in Japan" data-ja="留学の現実 — 日本キャンパス7つの生存法則">留學幻滅真相 — 7大日本校園生存法則</div>
+          <div class="vid-desc" data-zh="反直覺行銷：揭露留學壓力建立專業信任感，以「留言獲取資訊」CTA 精準導流，篩選出真正有決心的學生。" data-en="Counter-intuitive marketing: exposing study pressures to build authority and trust. CTA via comment-to-DM filters genuinely motivated students." data-ja="逆張りマーケティング：留学プレッシャーを正直に伝えて権威性を構築。コメントCTAで本気の学生を精密にフィルタリング。">反直覺行銷：揭露留學壓力建立專業信任感，以「留言獲取資訊」CTA 精準導流，篩選出真正有決心的學生。</div>
         </div>
       </div>
     </div>
@@ -668,11 +644,69 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
     <div class="brand-info">
       <div class="vid-tag" data-zh="品牌合作 · 仍在進行中" data-en="Brand Collab · Ongoing" data-ja="ブランドコラボ · 継続中">品牌合作 · 仍在進行中</div>
       <div class="vid-title" data-zh="Insta360 國際品牌校園大使" data-en="Insta360 International Campus Brand Ambassador" data-ja="Insta360 国際ブランドキャンパスアンバサダー">Insta360 國際品牌校園大使</div>
-      <p style="font-size:12px;font-weight:300;color:var(--ink-70);line-height:1.7;margin-bottom:10px" data-zh="將科技產品無縫融入生活探店，拼圖咖啡廳合作影片獲得 <strong style='color:var(--terra)'>925 次轉傳</strong>（轉傳率遠高於平均），代表觀眾主動推薦給朋友，展現強烈病毒式傳播力。" data-en="Seamlessly integrated tech products into lifestyle content. The Puzzle Café collab earned <strong style='color:var(--terra)'>925 shares</strong> (far above average share rate), showing strong viral spread as viewers actively recommended it to friends." data-ja="テクノロジー製品をライフスタイルコンテンツに自然融合。パズルカフェコラボ動画は<strong style='color:var(--terra)'>925シェア</strong>（平均を大幅に上回る）を獲得し、視聴者が積極的に友人へ推薦する強いバイラル性を示した。">将科技產品無縫融入生活探店，拼圖咖啡廳合作影片獲得 <strong style="color:var(--terra)">925 次轉傳</strong>（轉傳率遠高於平均），代表觀眾主動推薦給朋友，展現強烈病毒式傳播力。</p>
-      <div class="vid-stats">
-        <div><span class="vs-num">30,625</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
-        <div><span class="vs-num">925</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
-        <div><span class="vs-num">351</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
+      <p style="font-size:12px;font-weight:300;color:var(--ink-70);line-height:1.7;margin-bottom:10px" data-zh="個人帳號僅 <strong style='color:var(--ink)'>600+ 粉絲</strong>，透過強鉤子與精準內容策略，累積兩支合作影片共突破 <strong style='color:var(--terra)'>5.6 萬次觀看</strong>，轉傳率遠高於平均，展現超越粉絲基數的爆發力。" data-en="With only <strong style='color:var(--ink)'>600+ followers</strong>, two brand collab videos together surpassed <strong style='color:var(--terra)'>56K views</strong> through strong hooks and precise content strategy — far exceeding typical follower-to-reach ratios." data-ja="わずか<strong style='color:var(--ink)'>600+フォロワー</strong>ながら、2本のコラボ動画で合計<strong style='color:var(--terra)'>5.6万回視聴</strong>を突破。フォロワー数を超えたリーチ爆発力を示した。">個人帳號僅 <strong style="color:var(--ink)">600+ 粉絲</strong>，透過強鉤子與精準內容策略，累積兩支合作影片共突破 <strong style="color:var(--terra)">5.6 萬次觀看</strong>，轉傳率遠高於平均，展現超越粉絲基數的爆發力。</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div style="background:var(--cream-2);border-radius:10px;padding:10px 12px">
+          <div style="font-size:10px;color:var(--ink-40);margin-bottom:6px;font-weight:500" data-zh="拼圖咖啡廳" data-en="Puzzle Café" data-ja="パズルカフェ">拼圖咖啡廳</div>
+          <div class="vid-stats">
+            <div><span class="vs-num" style="font-size:15px">35,798</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
+            <div><span class="vs-num" style="font-size:15px">1,077</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            <div><span class="vs-num" style="font-size:15px">410</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
+          </div>
+        </div>
+        <div style="background:var(--cream-2);border-radius:10px;padding:10px 12px">
+          <div style="font-size:10px;color:var(--ink-40);margin-bottom:6px;font-weight:500" data-zh="溯溪跳水" data-en="River Trekking" data-ja="沢登り">溯溪跳水</div>
+          <div class="vid-stats">
+            <div><span class="vs-num" style="font-size:15px">20,906</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
+            <div><span class="vs-num" style="font-size:15px">774</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            <div><span class="vs-num" style="font-size:15px">164</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- 影片縮圖 -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px;max-width:700px;margin-left:auto;margin-right:auto">
+        <div class="vid-card">
+          <div class="vid-thumb" id="thumb3" onclick="toggleVid(this,'insta360_cafe.mp4')">
+            <canvas class="thumb-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
+            <video playsinline loop><source src="insta360_cafe.mp4" type="video/mp4"></video>
+            <div class="play-btn">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+                <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+                <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+              </svg>
+            </div>
+          </div>
+          <div class="vid-info">
+            <div class="vid-tag" data-zh="品牌合作 · Insta360" data-en="Brand Collab · Insta360" data-ja="ブランドコラボ · Insta360">品牌合作 · Insta360</div>
+            <div class="vid-title" data-zh="拼圖咖啡廳軟性置入" data-en="Puzzle Café Soft Integration" data-ja="パズルカフェ ソフトプロモーション">拼圖咖啡廳軟性置入</div>
+            <div class="vid-stats" style="margin-top:8px">
+              <div><span class="vs-num">35,798</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
+              <div><span class="vs-num">1,077</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="vid-card">
+          <div class="vid-thumb" id="thumb4" onclick="toggleVid(this,'insta360_new.mp4')">
+            <canvas class="thumb-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
+            <video playsinline loop><source src="insta360_new.mp4" type="video/mp4"></video>
+            <div class="play-btn">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.9)"/>
+                <polygon class="play-icon" points="16,13 30,20 16,27" fill="#1c1814"/>
+                <g class="pause-icon"><rect x="13" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/><rect x="22" y="13" width="5" height="14" rx="1.5" fill="#1c1814"/></g>
+              </svg>
+            </div>
+          </div>
+          <div class="vid-info">
+            <div class="vid-tag" data-zh="品牌合作 · Insta360" data-en="Brand Collab · Insta360" data-ja="ブランドコラボ · Insta360">品牌合作 · Insta360</div>
+            <div class="vid-title" data-zh="溯溪跳水挑戰" data-en="River Trekking Cliff Jump" data-ja="沢登り飛び込みチャレンジ">溯溪跳水挑戰</div>
+            <div class="vid-stats" style="margin-top:8px">
+              <div><span class="vs-num">20,906</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
+              <div><span class="vs-num">774</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -702,7 +736,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 
   <div class="skill-cards reveal">
     <div class="sk-card"><div class="sk-num">01</div><div class="sk-name" data-zh="資訊視覺化" data-en="Information Visualization" data-ja="情報可視化">資訊視覺化</div><div class="sk-desc" data-zh="將數據與複雜資訊轉化為直覺易懂的視覺層次，確保訊息傳遞精準度與受眾參與感。" data-en="Transforming data and complex information into intuitive visual hierarchies for precise communication and audience engagement." data-ja="データや複雑な情報を直感的なビジュアル階層に変換し、正確な情報伝達と視聴者のエンゲージメントを実現。">將數據與複雜資訊轉化為直覺易懂的視覺層次，確保訊息傳遞精準度與受眾參與感。</div></div>
-    <div class="sk-card"><div class="sk-num">02</div><div class="sk-name" data-zh="跨文化編輯企劃" data-en="Cross-Cultural Editorial" data-ja="異文化編集企画">跨文化編輯企劃</div><div class="sk-desc" data-zh="運用 JLPT N2 完成 40 頁全日文雜誌，涵蓋 5 所大學、20 家店舖，全程獨立完成。" data-en="Used JLPT N2 proficiency to produce a 40-page all-Japanese magazine covering 5 universities and 20 restaurants, completed independently." data-ja="JLPT N2の日本語力を活かし、5大学・20店舗を取材した40ページの全日本語雑誌を独力で制作。">運用 JLPT N2 完成 40 頁全日文雜誌，涵蓋 5 所大學、20 家店舖，全程獨立完成。</div></div>
+    <div class="sk-card"><div class="sk-num">02</div><div class="sk-name" data-zh="跨文化編輯企劃" data-en="Cross-Cultural Editorial" data-ja="異文化編集企画">跨文化編輯企劃</div><div class="sk-desc" data-zh="運用 JLPT N2 完成 66 頁全日文雜誌，涵蓋 5 所大學、20 家店舖，全程獨立完成。" data-en="Used JLPT N2 proficiency to produce a 66-page all-Japanese magazine covering 5 universities and 20 restaurants, completed independently." data-ja="JLPT N2の日本語力を活かし、5大学・20店舗を取材した66ページの全日本語雑誌を独力で制作。">運用 JLPT N2 完成 66 頁全日文雜誌，涵蓋 5 所大學、20 家店舖，全程獨立完成。</div></div>
     <div class="sk-card"><div class="sk-num">03</div><div class="sk-name" data-zh="影音內容產製" data-en="Video Content Production" data-ja="動画コンテンツ制作">影音內容產製</div><div class="sk-desc" data-zh="精通 CapCut 剪輯與 Nikon 攝影，累計 5 支萬級觀看，以高吸睛鉤子穩定維持高停留率。" data-en="Proficient in CapCut editing and Nikon photography, with 5 videos reaching 10K+ views each using strong hooks for high retention." data-ja="CapCut編集とNikon撮影に習熟。強力なフックで高視聴維持率を保ちながら、10万再生以上の動画を5本制作。">精通 CapCut 剪輯與 Nikon 攝影，累計 5 支萬級觀看，以高吸睛鉤子穩定維持高停留率。</div></div>
   </div>
 </section>
@@ -741,7 +775,8 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
   <div class="trait-grid reveal">
     <div class="trait-card"><div class="trait-title" data-zh="認知靈活性" data-en="Cognitive Flexibility" data-ja="認知の柔軟性">認知靈活性</div><div class="trait-desc" data-zh="同時在兩種語言、三個機構的學術與職場環境中高效切換，穩定產出高品質成果。" data-en="Efficiently switching between two languages and three institutions' academic and professional environments while maintaining consistent high-quality output." data-ja="2言語・3機関の学術・職場環境を高効率に切り替えながら、安定した高品質な成果を産出。">同時在兩種語言、三個機構的學術與職場環境中高效切換，穩定產出高品質成果。</div></div>
     <div class="trait-card"><div class="trait-title" data-zh="高負載執行力" data-en="High-Load Execution" data-ja="高負荷実行力">高負載執行力</div><div class="trait-desc" data-zh="在陌生組織架構中以第二語言溝通，面對緊湊時程仍能維持零失誤輸出。" data-en="Communicating in a second language within unfamiliar organizational structures, maintaining zero-error output even under tight deadlines." data-ja="未知の組織構造の中で第二言語でコミュニケーションを取り、タイトなスケジュールの中でもゼロエラーの成果を維持。">在陌生組織架構中以第二語言溝通，面對緊湊時程仍能維持零失誤輸出。</div></div>
-    <div class="trait-card"><div class="trait-title" data-zh="本地化策略思維" data-en="Localization Strategic Thinking" data-ja="ローカライゼーション戦略思考">本地化策略思維</div><div class="trait-desc" data-zh="深度理解日本消費者心理與平台行為規範，不只翻譯語言，更翻譯文化語境。" data-en="Deep understanding of Japanese consumer psychology and platform behavior norms — not just translating language, but translating cultural context." data-ja="日本の消費者心理とプラットフォーム行動規範を深く理解。言語だけでなく、文化的文脈をも翻訳する。">深度理解日本消費者心理與平台行為規範，不只翻譯語言，更翻譯文化語境。</div></div>
+    <div class="trait-card"><div class="trait-title" data-zh="數據導向內容思維" data-en="Data-Driven Content Thinking" data-ja="データ駆動コンテンツ思考">數據導向內容思維</div><div class="trait-desc" data-zh="以觀看留存率、觸及率、轉傳率分析內容表現，用數字優化下一支影片的策略方向。" data-en="Analyzing content performance through watch retention, reach rate, and share rate — using data to optimize the strategy for the next video." data-ja="視聴維持率・リーチ率・シェア率でコンテンツを分析し、数字から次の動画の戦略を最適化する。">以觀看留存率、觸及率、轉傳率分析內容表現，用數字優化下一支影片的策略方向。</div></div>
+
   </div>
 </section>
 
@@ -775,14 +810,9 @@ const nav=document.getElementById('navbar');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
 
 function counter(el,target,suffix,dur){
-  let s=0,step=target/(dur/16);
-  const tick=()=>{
-    s=Math.min(s+step,target);
-    const v=Math.round(s);
-    el.textContent=(target>=10000?v.toLocaleString():v)+suffix;
-    if(s<target)requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
+  // 直接顯示最終數字，不用跑馬燈
+  const v = target >= 10000 ? target.toLocaleString() : target;
+  el.textContent = v + suffix;
 }
 
 const io=new IntersectionObserver(entries=>{
@@ -803,11 +833,11 @@ document.querySelectorAll('.reveal,.reveal-right,.tl-item').forEach(el=>io.obser
 
 setTimeout(()=>{
   document.querySelectorAll('#hero [data-target]').forEach(el=>{
-    counter(el,parseInt(el.dataset.target),el.dataset.suffix||'',2000);
+    counter(el,parseInt(el.dataset.target),el.dataset.suffix||'',0);
   });
   document.getElementById('hero-stat1').textContent='45萬+';
   document.getElementById('hero-stat2').textContent='117%';
-},800);
+},100);
 
 // ── 影片縮圖點擊播放 ──
 function toggleVid(thumb, src) {
@@ -852,7 +882,8 @@ function setLang(lang) {
   document.querySelectorAll('[data-zh],[data-en],[data-ja]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
     if (!text) return;
-    // innerHTML 支援 <br> <strong> 等標籤
+    // 跳過含有圖片、影片、canvas 的元素，避免覆蓋媒體內容
+    if (el.querySelector('img,video,canvas')) return;
     el.innerHTML = text;
   });
   // 更新 html lang 屬性
@@ -875,10 +906,10 @@ function setLang(lang) {
   new Chart(document.getElementById('barChart'),{
     type:'bar',
     data:{
-      labels:['庫洛魔法使\n× 藏壽司','富士山\n三訪企劃','新莊燈會\nPOV','Insta360\n拼圖咖啡廳'],
+      labels:['庫洛魔法使\n× 藏壽司','富士山\n三訪企劃','新莊燈會\nPOV'],
       datasets:[{
-        data:[169736,126913,121834,30625],
-        backgroundColor:['#b85c32','#a07428','#b85c32','#a07428'],
+        data:[169736,126913,121834],
+        backgroundColor:['#b85c32','#a07428','#b85c32'],
         borderRadius:6,borderSkipped:false
       }]
     },
@@ -894,7 +925,7 @@ function setLang(lang) {
   new Chart(document.getElementById('growthChart'),{
     type:'line',
     data:{
-      labels:['5月\n實習開始','6月','7月','8月底\n實習結束'],
+      labels:['2025/07\n發片前','7/2\n第一支上線','8月初\n密集發片','2025/08\n實習結束'],
       datasets:[{
         data:[750,950,1200,1521],
         borderColor:'#2a6049',
