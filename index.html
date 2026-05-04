@@ -178,7 +178,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 .about-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border:0.5px solid var(--ink-12);border-radius:16px;overflow:hidden;background:#fff}
 .about-stat{padding:28px 24px;border-right:0.5px solid var(--ink-12);text-align:center}
 .about-stat:last-child{border-right:none}
-.about-stat-num{font-family:var(--display);font-size:36px;font-weight:800;line-height:1;margin-bottom:4px}
+.about-stat-num{font-family:var(--display);font-size:36px;font-weight:800;line-height:1.15;margin-bottom:4px;letter-spacing:-0.02em}
 .about-stat-num.blue{color:var(--blue)}
 .about-stat-num.green{color:var(--green)}
 .about-stat-num.terra{color:var(--terra)}
@@ -206,7 +206,7 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 .kpi-stack{display:flex;flex-direction:column;gap:10px}
 .kpi-card{background:#fff;border:0.5px solid var(--ink-12);border-radius:12px;padding:20px 22px;transition:border-color 0.2s}
 .kpi-card:hover{border-color:rgba(28,24,20,0.25)}
-.kpi-num{font-family:var(--display);font-size:36px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-bottom:4px}
+.kpi-num{font-family:var(--display);font-size:36px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:4px}
 .kpi-num.blue{color:var(--blue)}.kpi-num.green{color:var(--green)}.kpi-num.terra{color:var(--terra)}.kpi-num.warm{color:var(--warm)}
 .kpi-lbl{font-size:12px;color:var(--ink-70);font-weight:300;line-height:1.4}
 .kpi-src{font-size:10px;color:var(--ink-40);margin-top:3px;font-style:italic}
@@ -235,11 +235,9 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
 .vid-tag{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:4px;font-family:var(--display)}
 .vid-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px;line-height:1.3}
 .vid-desc{font-size:11px;font-weight:300;color:var(--ink-70);line-height:1.6;margin-bottom:10px}
-.vid-stats{display:flex;gap:12px;flex-wrap:wrap}
 .vid-stats{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end}
 .vs-num{font-family:var(--display);font-size:20px;font-weight:800;display:block;color:var(--terra);line-height:1.1;letter-spacing:-0.02em}
-.vs-lbl{font-size:10px;color:var(--ink-40);display:block;margin-top:2px;letter-spacing:0.04em
-
+.vs-lbl{font-size:10px;color:var(--ink-40);display:block;margin-top:2px;letter-spacing:0.04em}
 
 /* 圖表區 */
 .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -348,16 +346,19 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
   .nav-links{display:none}
   .lang-switch{margin-left:8px}
   .lang-btn{padding:3px 7px;font-size:10px}
+
   #hero{padding:100px 5vw 60px}
   .hero-title{font-size:clamp(36px,12vw,64px)}
   .hero-sub{font-size:13px}
   .hero-btns{flex-direction:column;align-items:flex-start;gap:10px}
+
   #about,#data,#design,#international,#contact{padding:56px 5vw}
   .sec-title{font-size:clamp(28px,8vw,48px)}
   .about-grid{grid-template-columns:1fr}
   .about-body{grid-template-columns:1fr}
   .skill-cards{grid-template-columns:1fr}
   .trait-grid{grid-template-columns:1fr}
+
   .data-cols{grid-template-columns:1fr}
   .kpi-grid{grid-template-columns:1fr 1fr}
   .kpi-card{padding:12px}
@@ -368,17 +369,21 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
   .chart-card{padding:14px}
   .chart-wrap{height:180px}
   .charts-row{grid-template-columns:1fr}
+
   .uf-card{padding:20px}
   .uf-nums{grid-template-columns:1fr!important}
   .brand-card{flex-direction:column;gap:14px}
+
   .intl-hero{grid-template-columns:1fr}
   .tl-item{padding-left:16px}
+
   .contact-links{flex-direction:column;align-items:center}
   .contact-sub{font-size:13px}
+
+  /* 手機版內嵌 grid 強制單欄 */
   [style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr!important}
   [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
   [style*="grid-template-columns:calc"]{grid-template-columns:1fr!important}
-}
 }
 </style>
 </head>
@@ -684,16 +689,16 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
           <div style="font-size:10px;color:var(--ink-40);margin-bottom:6px;font-weight:500" data-zh="拼圖咖啡廳" data-en="Puzzle Café" data-ja="パズルカフェ">拼圖咖啡廳</div>
           <div class="vid-stats">
             <div><span class="vs-num">35,798</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
-            <div><span class="vs-num" >1,077</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
-            <div><span class="vs-num" >410</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
+            <div><span class="vs-num">1,077</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            <div><span class="vs-num">410</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
           </div>
         </div>
         <div style="background:var(--cream-2);border-radius:10px;padding:10px 12px">
           <div style="font-size:10px;color:var(--ink-40);margin-bottom:6px;font-weight:500" data-zh="溯溪跳水" data-en="River Trekking" data-ja="沢登り">溯溪跳水</div>
           <div class="vid-stats">
-            <div><span class="vs-num" >20,906</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
-            <div><span class="vs-num" >774</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
-            <div><span class="vs-num" >164</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
+            <div><span class="vs-num">20,906</span><span class="vs-lbl" data-zh="觀看" data-en="Views" data-ja="視聴">觀看</span></div>
+            <div><span class="vs-num">774</span><span class="vs-lbl" data-zh="轉傳" data-en="Shares" data-ja="シェア">轉傳</span></div>
+            <div><span class="vs-num">164</span><span class="vs-lbl" data-zh="收藏" data-en="Saves" data-ja="保存">收藏</span></div>
           </div>
         </div>
       </div>
