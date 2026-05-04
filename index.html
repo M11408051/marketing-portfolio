@@ -333,18 +333,50 @@ nav.scrolled{background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border
   .about-grid{grid-template-columns:1fr 1fr}
   .about-body{grid-template-columns:1fr}
   .data-cols{grid-template-columns:1fr}
-  .vid-grid{grid-template-columns:1fr}
+  .vid-grid{grid-template-columns:1fr 1fr}
   .intl-hero{grid-template-columns:1fr}
   .skill-cards{grid-template-columns:1fr 1fr}
-  .trait-grid{grid-template-columns:1fr}
+  .trait-grid{grid-template-columns:1fr 1fr}
   .uf-nums{grid-template-columns:1fr 1fr}
+  .charts-row{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
+  nav{padding:0 16px}
   .nav-links{display:none}
-  .about-grid{grid-template-columns:1fr 1fr}
+  .lang-switch{margin-left:8px}
+  .lang-btn{padding:3px 7px;font-size:10px}
+  #hero{padding:100px 5vw 60px}
+  .hero-title{font-size:clamp(36px,12vw,64px)}
+  .hero-sub{font-size:13px}
+  .hero-btns{flex-direction:column;align-items:flex-start;gap:10px}
+  #about,#data,#design,#international,#contact{padding:56px 5vw}
+  .sec-title{font-size:clamp(28px,8vw,48px)}
+  .about-grid{grid-template-columns:1fr}
+  .about-body{grid-template-columns:1fr}
   .skill-cards{grid-template-columns:1fr}
+  .trait-grid{grid-template-columns:1fr}
+  .data-cols{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .kpi-card{padding:12px}
+  .kpi-num{font-size:28px!important}
+  .vid-grid{grid-template-columns:1fr!important}
+  .vid-card{flex-direction:column}
+  .vid-thumb{width:100%!important;height:auto!important;aspect-ratio:9/16}
+  .chart-card{padding:14px}
+  .chart-wrap{height:180px}
+  .charts-row{grid-template-columns:1fr}
+  .uf-card{padding:20px}
+  .uf-nums{grid-template-columns:1fr!important}
+  .brand-card{flex-direction:column;gap:14px}
+  .intl-hero{grid-template-columns:1fr}
+  .tl-item{padding-left:16px}
   .contact-links{flex-direction:column;align-items:center}
-  .hero-btns{flex-direction:column;align-items:flex-start}
+  .contact-sub{font-size:13px}
+  [style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  [style*="grid-template-columns:calc"]{grid-template-columns:1fr!important}
+}
 }
 </style>
 </head>
